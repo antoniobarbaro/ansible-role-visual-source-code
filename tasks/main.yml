@@ -1,0 +1,27 @@
+---
+# tasks file for visual source code
+- name: Install visual source code repository
+  yum_repository:
+    name: vscode
+    description: visual-source-code repository
+    baseurl: https://packages.microsoft.com/yumrepos/vscode
+    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+    gpgcheck: yes
+    enabled: yes
+
+- name: install chefdk
+  yum:
+    name: code
+    state: latest
+    update_cache: yes
+
+- name: copy start vscode as root script
+  copy:
+    src: files/start-vscode.sh
+    dest: /root/start-vscode.sh
+    owner: root
+    group: root
+    mode: "u=rwx,g=r,o=r"
+
+
+
